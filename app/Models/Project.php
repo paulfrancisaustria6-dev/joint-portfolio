@@ -11,6 +11,7 @@ class Project extends Model
         'title',
         'description',
         'category',
+        'year',
         'technologies',
         'image',
         'project_url',

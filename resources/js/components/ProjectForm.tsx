@@ -7,6 +7,7 @@ type ProjectData = {
     title: string;
     description: string;
     category: string;
+    year: number;
     technologies: string[];
     image?: string | null;
     project_url?: string | null;
@@ -23,6 +24,7 @@ export default function ProjectForm({ project }: { project?: ProjectData }) {
         title: project?.title ?? '',
         description: project?.description ?? '',
         category: project?.category ?? '',
+        year: project?.year ?? 2026,
         technologies: project?.technologies ?? [],
         image: null as File | null,
         project_url: project?.project_url ?? '',
@@ -88,6 +90,34 @@ export default function ProjectForm({ project }: { project?: ProjectData }) {
                     </div>
                 ),
             )}
+
+                        <div>
+                <label
+                    htmlFor="year"
+                    className="mb-2 block text-sm font-medium"
+                >
+                    Project Year
+                </label>
+
+                <input
+                    id="year"
+                    name="year"
+                    type="number"
+                    min="1900"
+                    max="2100"
+                    value={form.data.year}
+                    onChange={(e) =>
+                        form.setData('year', Number(e.target.value))
+                    }
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3"
+                />
+
+                {form.errors.year && (
+                    <p className="mt-1 text-sm text-red-500">
+                        {form.errors.year}
+                    </p>
+                )}
+            </div>
 
             <div>
                 <label className="mb-2 block text-sm font-semibold">Description</label>
